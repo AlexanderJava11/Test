@@ -7,8 +7,8 @@ public class QuizApp {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            QuizWindow w = new QuizWindow("Quiz-kampen", BILD);
-        w.setVisible(true);
+            QuizWindow w = new QuizWindow("Quizkampen", BILD);
+            w.setVisible(true);
         });
     }
 }
