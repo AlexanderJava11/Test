@@ -1,7 +1,6 @@
 package QuizGui;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +15,7 @@ public class QuizWindow extends JFrame implements ActionListener {
 
     JButton start = new JButton("Starta nytt spel");
 
-    public QuizWindow() {
+    public QuizWindow(String s, String bild) {
         setTitle("Quizkampen");
 
         this.add(quizWindow);
