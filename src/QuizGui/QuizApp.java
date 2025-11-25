@@ -1,6 +1,8 @@
+/*
 package QuizGui;
 
-import javax.swing.*;
+
+import javax.swing.SwingUtilities;
 
 public class QuizApp {
     public static final String BILD = "/QuizGui/img.png";
@@ -12,3 +14,6 @@ public class QuizApp {
         });
     }
 }
+
+
+ */

@@ -1,4 +1,4 @@
-package QuizGui;
+/*package QuizGui;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,3 +36,5 @@ public class QuizStart extends JPanel {
         return panel;
     }
 }
+
+ */
