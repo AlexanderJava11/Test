@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static Category_Question.Category.DJUR;
+
+
 public class QuestionsDatabase extends Question implements Serializable {
     public List<Question> questions = new ArrayList<>();
 
@@ -62,7 +65,7 @@ public class QuestionsDatabase extends Question implements Serializable {
 
         questions.add(new Question(
                 7,
-                Category.DJUR,
+                DJUR,
                 "Vilket djur kan flyga?",
                 List.of("Fågel", "Hund", "Katt", "Orm"),
                 0 // Fågel
@@ -70,7 +73,7 @@ public class QuestionsDatabase extends Question implements Serializable {
 
         questions.add(new Question(
                 8,
-                Category.DJUR,
+                DJUR,
                 "Vilket är världens största landlevande däggdjur?",
                 List.of("Elefant", "Giraff", "Flodhäst", "Isbjörn"),
                 0 // Elefant
@@ -78,7 +81,7 @@ public class QuestionsDatabase extends Question implements Serializable {
 
         questions.add(new Question(
                 9,
-                Category.DJUR,
+                DJUR,
                 "Vilket djur säger 'MU'?",
                 List.of("Ko", "Häst", "Får", "Kanin"),
                 0 // Ko
@@ -181,4 +184,34 @@ public class QuestionsDatabase extends Question implements Serializable {
             return List.copyOf(pool.subList(0, amount));
         }
     }
+
+    public List<Category> getRandomCategories(int amount) {
+        List<Category> allCategories = new ArrayList<>(getAllCategories());
+        Collections.shuffle(allCategories);
+        if (amount >= allCategories.size()) {
+            return List.copyOf(allCategories);
+        } else {
+            return List.copyOf(allCategories.subList(0, amount));
+        }
+    }
+
+    public Question getQuestionByID(int id) {
+        for (Question question : questions) {
+            if (question.getId() == id) {
+                return question;
+            }
+        }
+        return null;
+    }
+
+    public List<Question> dJquestionList (){
+        List<Question> djurQuestionList = new ArrayList<>(getRandomQuestions(DJUR,3));
+        return djurQuestionList;
+    }
+
+    public List<Question> getAllQuestions(){
+        return List.copyOf(questions);
+    }
+
+
 }

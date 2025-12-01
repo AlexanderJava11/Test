@@ -3,7 +3,11 @@ package QuizGui;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class MainMenu {
+
+    private static final String SERVER_HOST = "localhost";
+    private static final int SERVER_PORT = 8999;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(MainMenu::new);
@@ -16,13 +20,11 @@ public class MainMenu {
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
 
-        // Bakgrundspanel
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(new Color(0xF3F4F6));
         panel.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
 
-        // Titel
         JLabel title = new JLabel("QUIZKAMPEN");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Arial", Font.BOLD, 32));
@@ -36,38 +38,24 @@ public class MainMenu {
         panel.add(subtitle);
         panel.add(Box.createVerticalStrut(40));
 
-        // Knapp: Starta spel
         JButton btnStart = new JButton("Starta spelet");
         styleButton(btnStart);
+        btnStart.addActionListener(e -> JOptionPane.showMessageDialog(frame,
+                "Start-knappen öppnar klientdialog i din applikation.\n(Kan kopplas till serverklient om du vill.)"));
 
-        btnStart.addActionListener(e ->
-                JOptionPane.showMessageDialog(frame,
-                        "Här startar spelet.\n(Koppla spelet hit när det är klart.)")
-        );
-
-        // Slumpmässig spelare knapp (nu utan funktion)
         JButton btnRandomPlayer = new JButton("Slumpmässig spelare");
         styleButton(btnRandomPlayer);
-
         btnRandomPlayer.addActionListener(e ->
                 JOptionPane.showMessageDialog(frame,
-                        "Här kommer du få välja slumpmässiga personer.")
-        );
+                        "Här kommer du få välja slumpmässiga personer."));
 
-        // Knapp: Inställningar
         JButton btnSettings = new JButton("Inställningar");
         styleButton(btnSettings);
 
-        btnSettings.addActionListener(e ->
-                JOptionPane.showMessageDialog(frame, "Inställningsmenyn kommer här!")
-        );
-
-        // Knapp: Avsluta
         JButton btnExit = new JButton("Avsluta");
         styleButton(btnExit);
         btnExit.addActionListener(e -> System.exit(0));
 
-        // Lägg till alla knappar
         panel.add(btnStart);
         panel.add(Box.createVerticalStrut(20));
         panel.add(btnRandomPlayer);
@@ -90,7 +78,6 @@ public class MainMenu {
         frame.setVisible(true);
     }
 
-    // Styling för knappar
     private void styleButton(JButton button) {
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.setFont(new Font("Arial", Font.BOLD, 20));

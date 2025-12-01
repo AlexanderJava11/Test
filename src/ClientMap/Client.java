@@ -1,5 +1,9 @@
 package ClientMap;
 
+import Server.ServerProtokoll;
+
+import Server.Server;
+
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -18,20 +22,36 @@ public class Client {
             throw new RuntimeException(e);
         }
 
-        try(Socket socketToServer = new Socket(ip, 8888)) {
-
+        try(Socket socketToServer = new Socket(ip, 8999);
             ObjectOutputStream ous = new ObjectOutputStream(socketToServer.getOutputStream());
-            ObjectInputStream ois = new ObjectInputStream(socketToServer.getInputStream());
+            ObjectInputStream ois = new ObjectInputStream(socketToServer.getInputStream());) {
 
             Scanner sc = new Scanner(System.in);
 
-            Object obj;
+            Object fromServer;
+            Object fromClient;
 
-            while((obj = ois.readObject()) != null) {
-                System.out.println(obj);
-                String input = sc.nextLine();
-                ous.writeObject(input);
+
+            while((fromServer = ois.readObject()) != null) {
+
+                if(fromServer.equals("Runda Slut")){
+                    System.out.println("Server : " + fromServer);
+                    break;
+                }
+
+                System.out.println("Server : " + fromServer);
+
+                fromClient = sc.nextLine();
+                if (fromClient != null) {
+
+                    ous.writeObject(fromClient);
+                    ous.flush();
+
+                }
+
                 ous.flush();
+
+
             }
 
         } catch (IOException | ClassNotFoundException e) {
